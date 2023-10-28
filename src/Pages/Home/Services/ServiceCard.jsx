@@ -1,6 +1,7 @@
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
+// import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 const ServiceCard = ({ service }) => {
-  const { title, img, price } = service;
+  const {_id, title, img, price } = service;
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure className="px-10 pt-10">
@@ -11,9 +12,11 @@ const ServiceCard = ({ service }) => {
         <p className="text-orange-500 font-bold">Price: ${price}</p>
       </div>
       <div className="card-actions justify-end pb-4 pr-4">
-        <button className="btn btn-ghost hover:btn-neutral text-neutral-600 hover:text-white font-bold text-3xl">
-          <BsFillArrowRightCircleFill />
-        </button>
+        <Link to={`/checkout/${_id}`}>
+          <button className="btn btn-accent hover:btn-neutral text-slate-950 hover:text-white">
+            Book Now
+          </button>
+        </Link>
       </div>
     </div>
   );

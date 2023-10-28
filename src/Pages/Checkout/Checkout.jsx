@@ -1,29 +1,48 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Checkout = () => {
   const service = useLoaderData();
-  const { _id, title, price } = service;
+  const { _id, title, price, img } = service;
   const { user } = useContext(AuthContext);
 
-  const handleCheckout = e =>{
+  const handleCheckout = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const date = form.date.value;
-    const email = form.email.value;
-    const order = {
-        name,
-        email,
-        date,
-        service: _id,
-        price: price
-    }
-    console.log(order);
-  }
+    const email = user?.email;
+    const booking = {
+      name,
+      img,
+      email,
+      date,
+      service: title,
+      service_id: _id,
+      price: price,
+    };
+    console.log(booking);
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success('Successfully toasted!')
+        }
+      });
+  };
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={true} />
       <h2 className="text-center text-3xl font-bold">
         Booked Services: {title}
       </h2>
@@ -72,7 +91,7 @@ const Checkout = () => {
               <input
                 type="text"
                 name="due"
-                defaultValue={'$' + ' ' + price }
+                defaultValue={"$" + " " + price}
                 className="input input-bordered"
                 required
               />

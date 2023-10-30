@@ -4,11 +4,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const handleLogOut =()=>{
+  const handleLogOut = () => {
     logOut()
-    .then(()=>{})
-    .catch(error=> console.log(error))
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navItems = (
     <>
       <li>
@@ -29,11 +29,18 @@ const Navbar = () => {
       <li>
         <Link to={"/contact"}>Contact</Link>
       </li>
-      {user?.email ? <li>
-        <button onClick={handleLogOut}>Log Out</button>
-      </li> : <li>
-        <Link to={"/login"}>Login</Link>
-      </li>}
+      {user?.email ? <>
+        <li>
+        <Link to={"/bookings"}>My Bookings</Link>
+        </li>
+        <li>
+          <button onClick={handleLogOut}>Log Out</button>
+        </li>
+      </> : (
+        <li>
+          <Link to={"/login"}>Login</Link>
+        </li>
+      )}
     </>
   );
   return (

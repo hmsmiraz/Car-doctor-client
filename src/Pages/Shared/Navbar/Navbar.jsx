@@ -14,7 +14,7 @@ const Navbar = () => {
       <li>
         <Link to={"/"}>Home</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to={"/about"}>About</Link>
       </li>
       <li>
@@ -22,13 +22,10 @@ const Navbar = () => {
       </li>
       <li>
         <Link to={"/blog"}>Blog</Link>
-      </li>
+      </li> 
       <li>
         <Link to={"/contact"}>Contact</Link>
-      </li>
-      <li>
-        <Link to={"/contact"}>Contact</Link>
-      </li>
+      </li> */}
       {user?.email ? <>
         <li>
         <Link to={"/bookings"}>My Bookings</Link>

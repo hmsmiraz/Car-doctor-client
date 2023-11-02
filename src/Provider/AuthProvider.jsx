@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
         console.log('Current User', currentUser);
         if(currentUser){
-          axios.post('http://localhost:5000/jwt', loggedUser, {
+          axios.post('https://car-doctor-server-nine-pi.vercel.app/jwt', loggedUser, {
             withCredentials: true
           })
           .then(res=> {
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
           })
         }
         else{
-          axios.post('http://localhost:5000/logout', loggedUser, {
+          axios.post('https://car-doctor-server-nine-pi.vercel.app/logout', loggedUser, {
             withCredentials: true
           })
           .then(res=>{

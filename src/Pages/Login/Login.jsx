@@ -27,7 +27,8 @@ const Login = () => {
       })
       .then(res=>{
         // console.log(res.data);
-        if(res.data.success) {
+        console.log("Data", res,location );
+        if(res.data.Success) {
           navigate( location?.state ? location?.state : "/" );
         }
       })
